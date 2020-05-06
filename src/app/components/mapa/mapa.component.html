@@ -1,9 +1,24 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Mi mapa</mat-card-title>
-    <mat-card-subtitle>By Google</mat-card-subtitle>
+    <mat-card-title>Componente: Google Map</mat-card-title>
+    <mat-card-subtitle>By Google & Angular</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <google-map width="100%"> </google-map>
+    <google-map width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="addMarker($event)"> 
+      <map-marker #markElem *ngFor="let marker of markers; let i = index" [position]="marker.position" [label]="marker.label" [title]="marker.titulo" [options]="marker.options" (mapClick)="openInfo(markElem, marker.titulo, marker.desc, marker)">
+      </map-marker>
+        <map-info-window>
+        <strong class="text-dark font-weight-bold">
+          {{ infoTitle }}
+        </strong>
+        <p class="text-dark my-2">
+          {{ infoContent }}
+        </p>
+        <div class="d-flex flex-row justify-content-between mt-2">
+          <button mat-flat-button color="accent" class="mr-2">Editar</button>
+          <button (click)="removeMarker()" mat-flat-button color="warn">Quitar</button>
+        </div>
+      </map-info-window>
+    </google-map>
   </mat-card-content>
 </mat-card>
