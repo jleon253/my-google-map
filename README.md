@@ -8,9 +8,11 @@ This project is a small test of new google maps component for Angular 9, using A
 
 ### Dev tools used:
 
-> - HTML 5, Angular Material, Reactive Forms
+> - HTML 5, Angular Reactive Forms
 > - Angular 9, ES6
-> - Google Maps API
+> - Angular Material: https://material.angular.io/
+> - Angular Google Maps Component: https://github.com/angular/components/tree/master/src/google-maps
+> - Google Maps API: https://developers.google.com/maps/documentation/javascript/tutorial
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
