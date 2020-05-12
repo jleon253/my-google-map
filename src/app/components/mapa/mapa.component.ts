@@ -3,6 +3,8 @@ import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import {MyMarker} from '../../classes/myMarker.class';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MapaDialogComponent } from './mapa-dialog/mapa-dialog.component';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class MapaComponent implements OnInit {
   infoTitle = '';
   infoContent = '';
 
-  constructor( private _snackBar: MatSnackBar ) { 
+  constructor( private _snackBar: MatSnackBar, private _dialog: MatDialog ) { 
     this.loadMarkers();
   }
 
@@ -65,13 +67,38 @@ export class MapaComponent implements OnInit {
     }
   }
 
+  editMarker() {
+    const dialogRef = this._dialog.open(MapaDialogComponent, {
+      width: '300px',
+      height: 'auto',
+      data: {
+        titulo: this.infoTitle,
+        descripcion: this.infoContent
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.markers[this.markerSelect.id].titulo = result.titulo;
+        this.markers[this.markerSelect.id].desc = result.descripcion;
+        this.infoTitle = result.titulo;
+        this.infoContent = result.descripcion;
+        this.showSnackBar('Marcador actualizado');
+        this.saveMarkers();
+      }
+    });
+  }
+
   removeMarker() {
     this.markers.splice(this.markerSelect.id, 1);
     this.markers.map((elem, index, arr) => {
       elem.id = index;
     });
-    const snackBarRef = this._snackBar.open('Marcador borrado', 'Cerrar');
+    this.showSnackBar('Marcador borrado');
     this.saveMarkers();
+  }
+
+  showSnackBar(msg: string) {
+    const snackBarRef = this._snackBar.open(msg, 'Cerrar');
   }
 
 }

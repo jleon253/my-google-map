@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Editar info de marcador</h3>
+<mat-dialog-content>
+  <!-- Hola {{ data.nombre }} -->
+  <form #f="ngForm" [formGroup]="myForm">
+    <mat-form-field class="w-100">
+      <mat-label>Titulo</mat-label>
+      <input matInput placeholder="Ej: Mi hogar" name="titulo" formControlName="titulo">
+      <mat-error *ngIf="tituloNoValido">El campo no es valido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput placeholder="Ej: Barrio Valparaiso" rows="2" name="descripcion" formControlName="descripcion"></textarea>
+      <mat-error *ngIf="descripcionNoValido">El campo no es valido</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="saveDialog()">Guardar</button>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
