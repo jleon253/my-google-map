@@ -12,13 +12,12 @@ export class MyMarker {
     fontWeight: 'bold',
     fontSixe: '16px'
   };
-  public options = {
-    animation: google.maps.Animation.BOUNCE
-  };
+  // public options = {
+  //   animation: google.maps.Animation.BOUNCE
+  // };
 
   constructor(id: number, lat: number, lng: number) {
     this.id = id;
-    this.label.text = `${this.id}`;
     this.position.lat = lat;
     this.position.lng = lng;
   }

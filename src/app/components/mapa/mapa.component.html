@@ -5,7 +5,7 @@
   </mat-card-header>
   <mat-card-content>
     <google-map width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="addMarker($event)"> 
-      <map-marker #markElem *ngFor="let marker of markers; let i = index" [position]="marker.position" [label]="marker.label" [title]="marker.titulo" [options]="marker.options" (mapClick)="openInfo(markElem, marker.titulo, marker.desc, marker)">
+      <map-marker #markElem *ngFor="let marker of markers; let i = index" [position]="marker.position" [title]="marker.titulo" (mapClick)="openInfo(markElem, marker.titulo, marker.desc, marker)">
       </map-marker>
         <map-info-window>
         <strong class="text-dark font-weight-bold">
@@ -16,7 +16,7 @@
         </p>
         <div class="d-flex flex-row justify-content-between mt-2">
           <button mat-flat-button color="accent" class="mr-2">Editar</button>
-          <button (click)="removeMarker()" mat-flat-button color="warn">Quitar</button>
+          <button (click)="removeMarker()" mat-flat-button color="warn">Borrar</button>
         </div>
       </map-info-window>
     </google-map>

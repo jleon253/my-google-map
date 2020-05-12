@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { MyMarker } from '../../classes/myMarker.class';
+import {MyMarker} from '../../classes/myMarker.class';
+
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class MapaComponent implements OnInit {
   infoTitle = '';
   infoContent = '';
 
-  constructor() { 
+  constructor( private _snackBar: MatSnackBar ) { 
     this.loadMarkers();
   }
 
@@ -36,39 +38,17 @@ export class MapaComponent implements OnInit {
         lat: x.coords.latitude,
         lng: x.coords.longitude
       };
-    //   console.log('center', this.center);
-    //   this.markers.push({
-    //     position: {
-    //       lat: x.coords.latitude,
-    //       lng : x.coords.longitude
-    //     },
-    //     label: {
-    //       color: 'orange',
-    //       text: 'Dame click',
-    //       fontWeight: 'bold',
-    //       fontSixe: '16px'
-    //     },
-    //     title: 'Marker title',
-    //     info: 'Lorem ipsum dolor atem',
-    //     options: {
-    //       animation: google.maps.Animation.BOUNCE
-    //     }
-    //   });
     });
   }
 
   addMarker(evento: google.maps.MouseEvent) {
-    console.log('Agregando marcador - lat', evento.latLng.lat());
-    console.log('Agregando marcador - lng', evento.latLng.lng());
     const newMyMarker = new MyMarker(this.markers.length, evento.latLng.lat(), evento.latLng.lng());
     this.map.panTo(evento.latLng);
-    console.log('Nuevo my marker', newMyMarker);
     this.markers.push(newMyMarker);
     this.saveMarkers();
   }
 
   openInfo(marker: MapMarker, titleMarker: string, contentMarker: string, myMarker: MyMarker) {
-    console.log(marker);
     this.infoTitle = titleMarker;
     this.infoContent = contentMarker;
     this.markerSelect = myMarker;
@@ -86,14 +66,11 @@ export class MapaComponent implements OnInit {
   }
 
   removeMarker() {
-    console.log('markerSelect', this.markerSelect);
     this.markers.splice(this.markerSelect.id, 1);
     this.markers.map((elem, index, arr) => {
       elem.id = index;
-      elem.label.text = `${index}`;
     });
-    this.map.ngOnChanges();
-    console.log('Markers', this.markers);
+    const snackBarRef = this._snackBar.open('Marcador borrado', 'Cerrar');
     this.saveMarkers();
   }
 
