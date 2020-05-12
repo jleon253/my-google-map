@@ -1,13 +1,28 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Componente: Google Map</mat-card-title>
-    <mat-card-subtitle>By Google & Angular</mat-card-subtitle>
+    <mat-card-title>Probando el nuevo componente de Google Maps para Angular 9 y Material Design</mat-card-title>
+    <mat-card-subtitle>
+      <ul>
+        <li>Es posible agregar un nuevo marcador en cualquier lugar.</li>
+        <li>Al hacer click en al marcador, se puede editar su información (título y descripción).</li>
+        <li>La información se guarda en el localstorage.</li>
+        <li>Tambien se puede borrar el marcador.</li>
+      </ul>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <google-map width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="addMarker($event)"> 
-      <map-marker #markElem *ngFor="let marker of markers; let i = index" [position]="marker.position" [title]="marker.titulo" (mapClick)="openInfo(markElem, marker.titulo, marker.desc, marker)">
+    <google-map width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+      (mapClick)="addMarker($event)">
+      <map-marker #markElem
+        *ngFor="let marker of markers; let i = index"
+        [position]="marker.position"
+        [title]="marker.titulo"
+        (mapClick)="openInfo(markElem, marker.titulo, marker.desc, marker)">
       </map-marker>
-        <map-info-window>
+      <map-info-window>
         <strong class="text-dark font-weight-bold">
           {{ infoTitle }}
         </strong>
@@ -15,8 +30,13 @@
           {{ infoContent }}
         </p>
         <div class="d-flex flex-row justify-content-between mt-2">
-          <button (click)="editMarker()" mat-flat-button color="accent" class="mr-2">Editar</button>
-          <button (click)="removeMarker()" mat-flat-button color="warn">Borrar</button>
+          <button (click)="editMarker()"
+            mat-flat-button
+            color="accent"
+            class="mr-2">Editar</button>
+          <button (click)="removeMarker()"
+            mat-flat-button
+            color="warn">Quitar</button>
         </div>
       </map-info-window>
     </google-map>
