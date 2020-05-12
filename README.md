@@ -2,6 +2,8 @@
 
 This project is a small test of new google maps component for Angular 9, using Angular Material for the UI.
 
+> You must allow that Google know your location. This allow that app initialize correctly.
+
 **DEMO:** https://jleon253.github.io/my-google-map/
 
 ### Dev tools used:
