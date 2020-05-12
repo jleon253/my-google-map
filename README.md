@@ -1,6 +1,16 @@
-# Mapas
+# My Google Map
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+This project is a small test of new google maps component for Angular 9, using Angular Material for the UI.
+
+**DEMO:** 
+
+### Dev tools used:
+
+> - HTML 5, Angular Material, Reactive Forms
+> - Angular 9, ES6
+> - Google Maps API
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
 
