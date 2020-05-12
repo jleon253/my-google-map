@@ -2,7 +2,7 @@
 
 This project is a small test of new google maps component for Angular 9, using Angular Material for the UI.
 
-**DEMO:** 
+**DEMO:** https://jleon253.github.io/my-google-map/
 
 ### Dev tools used:
 
